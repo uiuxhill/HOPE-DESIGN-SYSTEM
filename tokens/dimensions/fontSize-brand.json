@@ -1,0 +1,16 @@
+{
+  "type": "dimension",
+  "xs": {"value": "{12}"},
+  "sm": {"value": "{14}"},
+  "base": {"value": "{16}"},
+  "lg": {"value": "{18}"},
+  "xl": {"value": "{20}"},
+  "2xl": {"value": "{24}"},
+  "3xl": {"value": "{30}"},
+  "4xl": {"value": "{36}"},
+  "5xl": {"value": "{48}"},
+  "6xl": {"value": "{60}"},
+  "7xl": {"value": "{72}"},
+  "8xl": {"value": "{96}"},
+  "9xl": {"value": "{128}"}
+}

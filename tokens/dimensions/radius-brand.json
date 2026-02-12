@@ -1,0 +1,13 @@
+{
+    "type": "dimension",
+    "none": {"value": "{0}"},
+    "xs": {"value": "{2}"},
+    "sm": {"value": "{4}"},
+    "md": {"value": "{6}"},
+    "lg": {"value": "{8}"},
+    "xl": {"value": "{12}"},
+    "2xl": {"value": "{16}"},
+    "3xl": {"value": "{24}"},
+    "4xl": {"value": "{32}"},
+    "full": {"value": "{999}"}
+}

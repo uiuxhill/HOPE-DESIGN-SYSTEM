@@ -1,0 +1,12 @@
+{
+  "name": "hope-design-system-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "build:figma": "node scripts/build-figma-tokens.mjs",
+    "dev": "npm run build:tokens && echo 'Start your dev server here'"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

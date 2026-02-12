@@ -1,0 +1,67 @@
+{
+  "type": "typography",
+  "heading/xxl": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "700",
+      "fontSize": "{fontSize.brand.4xl}",
+      "lineHeight": "{lineHeight.brand.36}"
+    }
+  },
+  "heading/xl": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "700",
+      "fontSize": "{fontSize.brand.3xl}",
+      "lineHeight": "{lineHeight.brand.32}"
+    }
+  },
+  "heading/lg": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "600",
+      "fontSize": "{fontSize.brand.2xl}",
+      "lineHeight": "{lineHeight.brand.32}"
+    }
+  },
+  "heading/md": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "600",
+      "fontSize": "{fontSize.brand.xl}",
+      "lineHeight": "{lineHeight.brand.28}"
+    }
+  },
+  "body/lg": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "400",
+      "fontSize": "{fontSize.brand.lg}",
+      "lineHeight": "{lineHeight.brand.28}"
+    }
+  },
+  "body/md": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "400",
+      "fontSize": "{fontSize.brand.base}",
+      "lineHeight": "{lineHeight.brand.24}"
+    }
+  },
+  "body/sm": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "400",
+      "fontSize": "{fontSize.brand.sm}",
+      "lineHeight": "{lineHeight.brand.20}"
+    }
+  },
+  "body/xs": {
+    "value": {
+      "fontFamily": "Roboto",
+      "fontWeight": "400",
+      "fontSize": "{fontSize.brand.xs}",
+      "lineHeight": "{lineHeight.brand.16}"
+    }
+  }
+}
