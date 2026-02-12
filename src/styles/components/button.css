@@ -1,0 +1,102 @@
+/* ══════════════════════════════════════════════
+   Button Component — HOPE Design System
+   ══════════════════════════════════════════════ */
+
+/* ── Base ──────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-4) var(--spacing-12);
+  border-radius: var(--rounded-sm);
+  border: none;
+  cursor: pointer;
+  font: var(--body-md);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+/* ── Sizes ─────────────────────────────────── */
+.btn-sm { padding: var(--spacing-2) var(--spacing-8); font: var(--body-sm); }
+.btn-lg { padding: var(--spacing-8) var(--spacing-20); font: var(--body-lg); }
+
+/* ── Icon ──────────────────────────────────── */
+.btn .btn-icon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  border-radius: var(--rounded-xs);
+}
+
+/* ── Variant: Brand Bold ───────────────────── */
+.btn-brand-bold {
+  background-color: var(--color-background-brand-bold);
+  color: var(--color-text-inverse);
+}
+.btn-brand-bold .btn-icon { background-color: var(--color-icon-inverse); }
+.btn-brand-bold:hover { background-color: var(--color-background-brand-bold-hovered); }
+.btn-brand-bold:active { background-color: var(--color-background-brand-bold-pressed); }
+
+/* ── Variant: Brand Boldest ────────────────── */
+.btn-brand-boldest {
+  background-color: var(--color-background-brand-boldest);
+  color: var(--color-text-inverse);
+}
+.btn-brand-boldest .btn-icon { background-color: var(--color-icon-inverse); }
+.btn-brand-boldest:hover { background-color: var(--color-background-brand-boldest-hovered); }
+.btn-brand-boldest:active { background-color: var(--color-background-brand-boldest-pressed); }
+
+/* ── Variant: Brand Subtlest ───────────────── */
+.btn-brand-subtlest {
+  background-color: var(--color-background-brand-subtlest);
+  color: var(--color-text-brand);
+}
+.btn-brand-subtlest .btn-icon { background-color: var(--color-icon-brand); }
+.btn-brand-subtlest:hover { background-color: var(--color-background-brand-subtlest-hovered); }
+.btn-brand-subtlest:active { background-color: var(--color-background-brand-subtlest-pressed); }
+
+/* ── Variant: Danger Bold ──────────────────── */
+.btn-danger-bold {
+  background-color: var(--color-background-danger-bold);
+  color: var(--color-text-inverse);
+}
+.btn-danger-bold .btn-icon { background-color: var(--color-icon-inverse); }
+.btn-danger-bold:hover { background-color: var(--color-background-danger-bold-hovered); }
+.btn-danger-bold:active { background-color: var(--color-background-danger-bold-pressed); }
+
+/* ── Variant: Success Bold ─────────────────── */
+.btn-success-bold {
+  background-color: var(--color-background-success-bold);
+  color: var(--color-text-inverse);
+}
+.btn-success-bold .btn-icon { background-color: var(--color-icon-inverse); }
+.btn-success-bold:hover { background-color: var(--color-background-success-bold-hovered); }
+.btn-success-bold:active { background-color: var(--color-background-success-bold-pressed); }
+
+/* ── Variant: Warning Bold ─────────────────── */
+.btn-warning-bold {
+  background-color: var(--color-background-warning-bold);
+  color: var(--color-text-inverse);
+}
+.btn-warning-bold .btn-icon { background-color: var(--color-icon-inverse); }
+.btn-warning-bold:hover { background-color: var(--color-background-warning-bold-hovered); }
+.btn-warning-bold:active { background-color: var(--color-background-warning-bold-pressed); }
+
+/* ── Variant: Neutral Subtle (Ghost) ───────── */
+.btn-neutral-subtle {
+  background-color: transparent;
+  color: var(--color-text-neutral);
+}
+.btn-neutral-subtle .btn-icon { background-color: var(--color-icon-neutral); }
+.btn-neutral-subtle:hover { background-color: var(--color-background-neutral-default-hovered); }
+.btn-neutral-subtle:active { background-color: var(--color-background-neutral-default-pressed); }
+
+/* ── Variant: Neutral Default ──────────────── */
+.btn-neutral-default {
+  background-color: var(--color-background-neutral-default);
+  color: var(--color-text-neutral);
+}
+.btn-neutral-default .btn-icon { background-color: var(--color-icon-neutral); }
+.btn-neutral-default:hover { background-color: var(--color-background-neutral-default-hovered); }
+.btn-neutral-default:active { background-color: var(--color-background-neutral-default-pressed); }

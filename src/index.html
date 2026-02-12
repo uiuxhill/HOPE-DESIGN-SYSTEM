@@ -4,557 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HOPE Design System</title>
-  <link rel="stylesheet" href="./styles/tokens.css">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ── Reset ──────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: var(--color-elevation-surface-sunken);
-      color: var(--color-text-neutral);
-      line-height: 1.5;
-    }
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles/tokens.css">
+  <link rel="stylesheet" href="./styles/app.css">
+  <link rel="stylesheet" href="./styles/components/button.css">
 
-    /* ── Layout ─────────────────────────────────── */
-    .app {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    /* ── Sidebar ────────────────────────────────── */
-    .sidebar {
-      width: 260px;
-      background: var(--color-elevation-surface-default);
-      border-right: 1px solid var(--color-border-neutral);
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      overflow-y: auto;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sidebar-header {
-      padding: var(--spacing-20) var(--spacing-20) var(--spacing-12);
-      border-bottom: 1px solid var(--color-border-neutral);
-    }
-
-    .sidebar-logo {
-      font: var(--heading-md);
-      color: var(--color-text-brand);
-      letter-spacing: -0.5px;
-    }
-
-    .sidebar-version {
-      font: var(--body-xs);
-      color: var(--color-text-neutral-subtlest);
-      margin-top: var(--spacing-4);
-    }
-
-    .sidebar-nav {
-      padding: var(--spacing-12) var(--spacing-12);
-      flex: 1;
-    }
-
-    .nav-section {
-      margin-bottom: var(--spacing-16);
-    }
-
-    .nav-section-title {
-      font: var(--body-xs);
-      color: var(--color-text-neutral-subtlest);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: var(--spacing-4) var(--spacing-8);
-      margin-bottom: var(--spacing-2);
-    }
-
-    .nav-link {
-      display: block;
-      font: var(--body-sm);
-      color: var(--color-text-neutral-subtler);
-      text-decoration: none;
-      padding: var(--spacing-6) var(--spacing-8);
-      border-radius: var(--rounded-md);
-      transition: all 0.15s ease;
-      cursor: pointer;
-    }
-
-    .nav-link:hover {
-      background: var(--color-background-neutral-subtle-hovered);
-      color: var(--color-text-neutral);
-    }
-
-    .nav-link.active {
-      background: var(--color-background-brand-subtlest);
-      color: var(--color-text-brand);
-      font-weight: 500;
-    }
-
-    /* ── Main Content ──────────────────────────── */
-    .main {
-      margin-left: 260px;
-      flex: 1;
-      min-height: 100vh;
-    }
-
-    .topbar {
-      background: var(--color-elevation-surface-default);
-      border-bottom: 1px solid var(--color-border-neutral);
-      padding: var(--spacing-12) var(--spacing-32);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-
-    .topbar-title {
-      font: var(--heading-md);
-      color: var(--color-text-neutral);
-    }
-
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--spacing-8);
-      font: var(--body-sm);
-      color: var(--color-text-neutral-subtler);
-      background: var(--color-background-neutral-default);
-      border: none;
-      padding: var(--spacing-6) var(--spacing-12);
-      border-radius: var(--rounded-lg);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .theme-toggle:hover {
-      background: var(--color-background-neutral-default-hovered);
-    }
-
-    .content {
-      padding: var(--spacing-32);
-      max-width: 1100px;
-    }
-
-    /* ── Page sections ─────────────────────────── */
-    .page { display: none; }
-    .page.active { display: block; }
-
-    .page-header {
-      margin-bottom: var(--spacing-32);
-    }
-
-    .page-title {
-      font: var(--heading-xl);
-      color: var(--color-text-neutral);
-      margin-bottom: var(--spacing-8);
-    }
-
-    .page-desc {
-      font: var(--body-md);
-      color: var(--color-text-neutral-subtler);
-      max-width: 640px;
-    }
-
-    /* ── Cards ──────────────────────────────────── */
-    .card {
-      background: var(--color-elevation-surface-default);
-      border: 1px solid var(--color-border-neutral);
-      border-radius: var(--rounded-xl);
-      padding: var(--spacing-24);
-      margin-bottom: var(--spacing-20);
-    }
-
-    .card-title {
-      font: var(--heading-md);
-      color: var(--color-text-neutral);
-      margin-bottom: var(--spacing-16);
-    }
-
-    .card-subtitle {
-      font: var(--body-sm);
-      color: var(--color-text-neutral-subtlest);
-      margin-bottom: var(--spacing-12);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* ── Color Swatches ────────────────────────── */
-    .swatch-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: var(--spacing-8);
-    }
-
-    .swatch {
-      display: flex;
-      flex-direction: column;
-      border-radius: var(--rounded-lg);
-      overflow: hidden;
-      border: 1px solid var(--color-border-neutral);
-    }
-
-    .swatch-color {
-      height: 56px;
-      width: 100%;
-    }
-
-    .swatch-info {
-      padding: var(--spacing-6) var(--spacing-8);
-      background: var(--color-elevation-surface-default);
-    }
-
-    .swatch-name {
-      font: var(--body-xs);
-      color: var(--color-text-neutral);
-      font-weight: 500;
-      word-break: break-all;
-    }
-
-    .swatch-value {
-      font: var(--body-xs);
-      color: var(--color-text-neutral-subtlest);
-      font-family: monospace;
-      font-size: 10px;
-    }
-
-    /* ── Token Table ───────────────────────────── */
-    .token-table {
-      width: 100%;
-      border-collapse: collapse;
-      font: var(--body-sm);
-    }
-
-    .token-table th {
-      text-align: left;
-      font-weight: 600;
-      color: var(--color-text-neutral-subtler);
-      padding: var(--spacing-8) var(--spacing-12);
-      border-bottom: 2px solid var(--color-border-neutral);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .token-table td {
-      padding: var(--spacing-8) var(--spacing-12);
-      border-bottom: 1px solid var(--color-border-neutral);
-      vertical-align: middle;
-    }
-
-    .token-table tr:hover td {
-      background: var(--color-background-neutral-subtle-hovered);
-    }
-
-    .token-name {
-      font-family: monospace;
-      font-size: 13px;
-      color: var(--color-text-brand);
-    }
-
-    .token-value {
-      font-family: monospace;
-      font-size: 13px;
-      color: var(--color-text-neutral-subtler);
-    }
-
-    .token-preview {
-      display: inline-block;
-      border-radius: var(--rounded-sm);
-      border: 1px solid var(--color-border-neutral);
-    }
-
-    .token-preview--color {
-      width: 24px;
-      height: 24px;
-      vertical-align: middle;
-    }
-
-    .token-preview--spacing {
-      height: 16px;
-      background: var(--color-background-brand-bold);
-      border: none;
-      border-radius: var(--rounded-xs);
-    }
-
-    .token-preview--radius {
-      width: 40px;
-      height: 40px;
-      background: var(--color-background-brand-subtlest);
-      border: 2px solid var(--color-border-brand);
-    }
-
-    .token-preview--text {
-      border: none;
-    }
-
-    /* ── Component Demo ────────────────────────── */
-    .component-preview {
-      background: var(--color-elevation-surface-sunken);
-      border: 1px solid var(--color-border-neutral);
-      border-radius: var(--rounded-xl);
-      padding: var(--spacing-32);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-16);
-      flex-wrap: wrap;
-      margin-bottom: var(--spacing-16);
-    }
-
-    /* ── Buttons (from button-demo) ────────────── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-8);
-      padding: var(--spacing-4) var(--spacing-12);
-      border-radius: var(--rounded-sm);
-      border: none;
-      cursor: pointer;
-      font: var(--body-md);
-      text-decoration: none;
-      transition: background-color 0.15s ease;
-    }
-
-    .btn-sm { padding: var(--spacing-2) var(--spacing-8); font: var(--body-sm); }
-    .btn-lg { padding: var(--spacing-8) var(--spacing-20); font: var(--body-lg); }
-
-    .btn .btn-icon {
-      width: 11px;
-      height: 11px;
-      flex-shrink: 0;
-      border-radius: var(--rounded-xs);
-    }
-
-    .btn-brand-bold {
-      background-color: var(--color-background-brand-bold);
-      color: var(--color-text-inverse);
-    }
-    .btn-brand-bold .btn-icon { background-color: var(--color-icon-inverse); }
-    .btn-brand-bold:hover { background-color: var(--color-background-brand-bold-hovered); }
-    .btn-brand-bold:active { background-color: var(--color-background-brand-bold-pressed); }
-
-    .btn-brand-boldest {
-      background-color: var(--color-background-brand-boldest);
-      color: var(--color-text-inverse);
-    }
-    .btn-brand-boldest .btn-icon { background-color: var(--color-icon-inverse); }
-    .btn-brand-boldest:hover { background-color: var(--color-background-brand-boldest-hovered); }
-    .btn-brand-boldest:active { background-color: var(--color-background-brand-boldest-pressed); }
-
-    .btn-brand-subtlest {
-      background-color: var(--color-background-brand-subtlest);
-      color: var(--color-text-brand);
-    }
-    .btn-brand-subtlest .btn-icon { background-color: var(--color-icon-brand); }
-    .btn-brand-subtlest:hover { background-color: var(--color-background-brand-subtlest-hovered); }
-    .btn-brand-subtlest:active { background-color: var(--color-background-brand-subtlest-pressed); }
-
-    .btn-danger-bold {
-      background-color: var(--color-background-danger-bold);
-      color: var(--color-text-inverse);
-    }
-    .btn-danger-bold .btn-icon { background-color: var(--color-icon-inverse); }
-    .btn-danger-bold:hover { background-color: var(--color-background-danger-bold-hovered); }
-    .btn-danger-bold:active { background-color: var(--color-background-danger-bold-pressed); }
-
-    .btn-success-bold {
-      background-color: var(--color-background-success-bold);
-      color: var(--color-text-inverse);
-    }
-    .btn-success-bold .btn-icon { background-color: var(--color-icon-inverse); }
-    .btn-success-bold:hover { background-color: var(--color-background-success-bold-hovered); }
-    .btn-success-bold:active { background-color: var(--color-background-success-bold-pressed); }
-
-    .btn-warning-bold {
-      background-color: var(--color-background-warning-bold);
-      color: var(--color-text-inverse);
-    }
-    .btn-warning-bold .btn-icon { background-color: var(--color-icon-inverse); }
-    .btn-warning-bold:hover { background-color: var(--color-background-warning-bold-hovered); }
-    .btn-warning-bold:active { background-color: var(--color-background-warning-bold-pressed); }
-
-    .btn-neutral-subtle {
-      background-color: transparent;
-      color: var(--color-text-neutral);
-    }
-    .btn-neutral-subtle .btn-icon { background-color: var(--color-icon-neutral); }
-    .btn-neutral-subtle:hover { background-color: var(--color-background-neutral-default-hovered); }
-    .btn-neutral-subtle:active { background-color: var(--color-background-neutral-default-pressed); }
-
-    .btn-neutral-default {
-      background-color: var(--color-background-neutral-default);
-      color: var(--color-text-neutral);
-    }
-    .btn-neutral-default .btn-icon { background-color: var(--color-icon-neutral); }
-    .btn-neutral-default:hover { background-color: var(--color-background-neutral-default-hovered); }
-    .btn-neutral-default:active { background-color: var(--color-background-neutral-default-pressed); }
-
-    /* ── Changelog ──────────────────────────────── */
-    .changelog-entry {
-      margin-bottom: var(--spacing-24);
-    }
-
-    .changelog-version {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--spacing-8);
-      font: var(--heading-md);
-      color: var(--color-text-neutral);
-      margin-bottom: var(--spacing-8);
-    }
-
-    .changelog-badge {
-      font: var(--body-xs);
-      padding: var(--spacing-2) var(--spacing-8);
-      border-radius: var(--rounded-full);
-      font-weight: 500;
-    }
-
-    .badge-latest {
-      background: var(--color-background-success-subtlest);
-      color: var(--color-text-success);
-    }
-
-    .changelog-date {
-      font: var(--body-sm);
-      color: var(--color-text-neutral-subtlest);
-      margin-bottom: var(--spacing-12);
-    }
-
-    .changelog-highlights {
-      list-style: none;
-      padding: 0;
-    }
-
-    .changelog-highlights li {
-      font: var(--body-sm);
-      color: var(--color-text-neutral-subtler);
-      padding: var(--spacing-4) 0;
-      padding-left: var(--spacing-16);
-      position: relative;
-    }
-
-    .changelog-highlights li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 12px;
-      width: 6px;
-      height: 6px;
-      border-radius: var(--rounded-full);
-      background: var(--color-background-brand-bold);
-    }
-
-    /* ── Code block ─────────────────────────────── */
-    .code-block {
-      background: var(--color-elevation-surface-sunken);
-      border: 1px solid var(--color-border-neutral);
-      border-radius: var(--rounded-lg);
-      padding: var(--spacing-16);
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: 13px;
-      color: var(--color-text-neutral-subtler);
-      overflow-x: auto;
-      margin-top: var(--spacing-8);
-      line-height: 1.6;
-    }
-
-    .code-keyword { color: var(--color-text-brand); }
-    .code-string { color: var(--color-text-success); }
-    .code-comment { color: var(--color-text-neutral-subtlest); }
-
-    /* ── Section divider ───────────────────────── */
-    .section-divider {
-      border: none;
-      border-top: 1px solid var(--color-border-neutral);
-      margin: var(--spacing-32) 0;
-    }
-
-    /* ── Tabs ───────────────────────────────────── */
-    .tab-bar {
-      display: flex;
-      gap: var(--spacing-4);
-      border-bottom: 1px solid var(--color-border-neutral);
-      margin-bottom: var(--spacing-20);
-    }
-
-    .tab-btn {
-      font: var(--body-sm);
-      color: var(--color-text-neutral-subtler);
-      background: none;
-      border: none;
-      padding: var(--spacing-8) var(--spacing-16);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: all 0.15s;
-    }
-
-    .tab-btn:hover { color: var(--color-text-neutral); }
-    .tab-btn.active {
-      color: var(--color-text-brand);
-      border-bottom-color: var(--color-border-brand);
-      font-weight: 500;
-    }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* ── Empty state ────────────────────────────── */
-    .empty-state {
-      text-align: center;
-      padding: var(--spacing-64) var(--spacing-32);
-      color: var(--color-text-neutral-subtlest);
-    }
-
-    .empty-state-icon {
-      font-size: 48px;
-      margin-bottom: var(--spacing-16);
-      opacity: 0.5;
-    }
-
-    .empty-state-title {
-      font: var(--heading-md);
-      color: var(--color-text-neutral-subtler);
-      margin-bottom: var(--spacing-8);
-    }
-
-    .empty-state-desc {
-      font: var(--body-md);
-    }
-
-    /* ── Responsive ─────────────────────────────── */
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      padding: var(--spacing-8);
-      cursor: pointer;
-      color: var(--color-text-neutral);
-      font-size: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar { transform: translateX(-100%); transition: transform 0.2s; }
-      .sidebar.open { transform: translateX(0); }
-      .main { margin-left: 0; }
-      .mobile-menu-btn { display: block; }
-      .content { padding: var(--spacing-16); }
-    }
-  </style>
+  <!-- Scripts -->
+  <script type="module" src="./js/app.js"></script>
 </head>
 <body>
 
 <div class="app">
-  <!-- ── Sidebar ──────────────────────────────── -->
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  SIDEBAR                                   -->
+  <!-- ═══════════════════════════════════════════ -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logo">HOPE</div>
@@ -581,11 +50,15 @@
     </nav>
   </aside>
 
-  <!-- ── Main ─────────────────────────────────── -->
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  MAIN                                      -->
+  <!-- ═══════════════════════════════════════════ -->
   <main class="main">
+
+    <!-- Topbar -->
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:12px">
-        <button class="mobile-menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">&#9776;</button>
         <span class="topbar-title" id="topbar-title">Home</span>
       </div>
       <button class="theme-toggle" onclick="toggleTheme()">
@@ -594,11 +67,12 @@
       </button>
     </div>
 
+    <!-- Content -->
     <div class="content">
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  HOME PAGE                              -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Home                           -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page active" id="page-home">
         <div class="page-header">
           <h1 class="page-title">HOPE Design System</h1>
@@ -639,9 +113,9 @@
         </div>
       </div>
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  CHANGELOG PAGE                         -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Changelog                      -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page" id="page-changelog">
         <div class="page-header">
           <h1 class="page-title">Changelog</h1>
@@ -704,21 +178,20 @@
         </div>
       </div>
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  GLOBAL COLORS PAGE                     -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Global Colors                  -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page" id="page-colors-global">
         <div class="page-header">
           <h1 class="page-title">Global Colors</h1>
           <p class="page-desc">Primitive color scales used as the foundation for all brand color tokens. Each scale has 11 steps (100–1000).</p>
         </div>
-
         <div id="global-colors-container"></div>
       </div>
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  BRAND COLORS PAGE                      -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Brand Colors                   -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page" id="page-colors-brand">
         <div class="page-header">
           <h1 class="page-title">Brand Colors</h1>
@@ -750,9 +223,9 @@
         </div>
       </div>
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  SPACING PAGE                           -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Spacing                        -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page" id="page-spacing">
         <div class="page-header">
           <h1 class="page-title">Spacing</h1>
@@ -776,9 +249,9 @@
         </div>
       </div>
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  DIMENSIONS PAGE                        -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Dimensions                     -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page" id="page-dimensions">
         <div class="page-header">
           <h1 class="page-title">Dimensions</h1>
@@ -802,9 +275,9 @@
         </div>
       </div>
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  TYPOGRAPHY PAGE                        -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Typography                     -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page" id="page-typography">
         <div class="page-header">
           <h1 class="page-title">Typography</h1>
@@ -822,15 +295,16 @@
         </div>
       </div>
 
-      <!-- ════════════════════════════════════════ -->
-      <!--  BUTTON PAGE                            -->
-      <!-- ════════════════════════════════════════ -->
+      <!-- ══════════════════════════════════════ -->
+      <!--  PAGE: Button                         -->
+      <!-- ══════════════════════════════════════ -->
       <div class="page" id="page-button">
         <div class="page-header">
           <h1 class="page-title">Button</h1>
           <p class="page-desc">Button component with multiple variants, sizes, and states using design tokens.</p>
         </div>
 
+        <!-- Variants -->
         <div class="card">
           <div class="card-title">Variants</div>
           <div class="component-preview">
@@ -845,6 +319,7 @@
           </div>
         </div>
 
+        <!-- Sizes -->
         <div class="card">
           <div class="card-title">Sizes</div>
           <div class="component-preview">
@@ -854,6 +329,7 @@
           </div>
         </div>
 
+        <!-- Usage -->
         <div class="card">
           <div class="card-title">Usage</div>
           <div class="code-block"><span class="code-comment">&lt;!-- Brand Bold Button --&gt;</span>
@@ -873,6 +349,7 @@
 &lt;/<span class="code-keyword">button</span>&gt;</div>
         </div>
 
+        <!-- Token Mapping -->
         <div class="card">
           <div class="card-title">Token Mapping</div>
           <table class="token-table">
@@ -918,256 +395,6 @@
     </div><!-- /content -->
   </main>
 </div>
-
-<script>
-// ── Page Navigation ───────────────────────────
-function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-  document.getElementById('page-' + pageId).classList.add('active');
-  document.querySelector('[data-page="' + pageId + '"]').classList.add('active');
-
-  const titles = {
-    home: 'Home', changelog: 'Changelog',
-    'colors-global': 'Global Colors', 'colors-brand': 'Brand Colors',
-    spacing: 'Spacing', dimensions: 'Dimensions',
-    typography: 'Typography', button: 'Button'
-  };
-  document.getElementById('topbar-title').textContent = titles[pageId] || pageId;
-  document.getElementById('sidebar').classList.remove('open');
-  window.scrollTo(0, 0);
-}
-
-// ── Tab Switching ─────────────────────────────
-function switchTab(btn, tabId) {
-  const bar = btn.parentElement;
-  bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const parent = bar.parentElement;
-  parent.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + tabId).classList.add('active');
-}
-
-// ── Theme Toggle ──────────────────────────────
-let isDark = false;
-function toggleTheme() {
-  isDark = !isDark;
-  document.body.classList.toggle('dark', isDark);
-  document.getElementById('theme-icon').textContent = isDark ? '☀' : '☽';
-  document.getElementById('theme-label').textContent = isDark ? 'Light' : 'Dark';
-}
-
-// ── Parse CSS variables from tokens.css ───────
-function getTokens() {
-  const root = getComputedStyle(document.documentElement);
-  const tokens = {};
-  const sheet = document.styleSheets[0]; // tokens.css
-  try {
-    for (const rule of sheet.cssRules) {
-      if (rule.selectorText === ':root' || rule.selectorText === '.dark') {
-        for (let i = 0; i < rule.style.length; i++) {
-          const prop = rule.style[i];
-          if (prop.startsWith('--') && rule.selectorText === ':root') {
-            tokens[prop] = rule.style.getPropertyValue(prop).trim();
-          }
-        }
-      }
-    }
-  } catch(e) {
-    // Fallback: parse from computed styles
-  }
-  return tokens;
-}
-
-// ── Build Global Colors Section ───────────────
-function buildGlobalColors() {
-  const tokens = getTokens();
-  const groups = {};
-
-  Object.entries(tokens).forEach(([name, value]) => {
-    if (!name.startsWith('--color-') || name.includes('text') || name.includes('icon') ||
-        name.includes('link') || name.includes('border') || name.includes('elevation') ||
-        name.includes('background') || name.includes('Alpha')) return;
-
-    const match = name.match(/^--color-([a-zA-Z]+)-(\d+)$/);
-    if (!match) return;
-
-    const [, group, step] = match;
-    if (!groups[group]) groups[group] = [];
-    groups[group].push({ name, value, step });
-  });
-
-  const container = document.getElementById('global-colors-container');
-  let html = '';
-
-  Object.entries(groups).forEach(([group, swatches]) => {
-    swatches.sort((a, b) => parseInt(a.step) - parseInt(b.step));
-    html += `<div class="card"><div class="card-title" style="text-transform:capitalize">${group}</div><div class="swatch-grid">`;
-    swatches.forEach(s => {
-      html += `<div class="swatch">
-        <div class="swatch-color" style="background:${s.value}"></div>
-        <div class="swatch-info">
-          <div class="swatch-name">${s.step}</div>
-          <div class="swatch-value">${s.value}</div>
-        </div>
-      </div>`;
-    });
-    html += '</div></div>';
-  });
-
-  container.innerHTML = html;
-}
-
-// ── Build Brand Color Tables ──────────────────
-function buildBrandColors() {
-  const tokens = getTokens();
-
-  const categories = {
-    text: { container: 'brand-text-container', prefix: '--color-text-' },
-    icon: { container: 'brand-icon-container', prefix: '--color-icon-' },
-    border: { container: 'brand-border-container', prefix: '--color-border-' },
-    bg: { container: 'brand-bg-container', prefix: '--color-background-' },
-    elevation: { container: 'brand-elevation-container', prefix: '--color-elevation-' }
-  };
-
-  Object.entries(categories).forEach(([key, { container, prefix }]) => {
-    const matching = Object.entries(tokens).filter(([name]) => name.startsWith(prefix));
-    const el = document.getElementById(container);
-
-    let html = '<div class="card"><table class="token-table"><thead><tr><th>Preview</th><th>Token</th><th>Value</th></tr></thead><tbody>';
-    matching.forEach(([name, value]) => {
-      const shortName = name.replace('--', '');
-      const isColor = value.startsWith('#') || value.startsWith('rgb') || value === 'transparent';
-      const preview = isColor
-        ? `<span class="token-preview token-preview--color" style="background:${value}"></span>`
-        : `<span class="token-preview token-preview--color" style="background:${value}"></span>`;
-      html += `<tr><td>${preview}</td><td class="token-name">${name}</td><td class="token-value">${value}</td></tr>`;
-    });
-    html += '</tbody></table></div>';
-    el.innerHTML = html;
-  });
-}
-
-// ── Build Spacing Tables ──────────────────────
-function buildSpacing() {
-  const tokens = getTokens();
-
-  // Global spacing
-  const spacingGlobal = Object.entries(tokens)
-    .filter(([name]) => name.startsWith('--spacing-'))
-    .sort((a, b) => parseInt(a[1]) - parseInt(b[1]));
-
-  let html = '<div class="card"><table class="token-table"><thead><tr><th>Preview</th><th>Token</th><th>Value</th></tr></thead><tbody>';
-  spacingGlobal.forEach(([name, value]) => {
-    const px = parseInt(value) || 0;
-    html += `<tr><td><span class="token-preview token-preview--spacing" style="width:${Math.min(px, 200)}px"></span></td><td class="token-name">${name}</td><td class="token-value">${value}</td></tr>`;
-  });
-  html += '</tbody></table></div>';
-  document.getElementById('spacing-global-container').innerHTML = html;
-
-  // Brand padding
-  const padding = Object.entries(tokens)
-    .filter(([name]) => name.startsWith('--p-'))
-    .sort((a, b) => parseInt(a[1]) - parseInt(b[1]));
-
-  html = '<div class="card"><table class="token-table"><thead><tr><th>Preview</th><th>Token</th><th>Value</th></tr></thead><tbody>';
-  padding.forEach(([name, value]) => {
-    const px = parseInt(value) || 0;
-    html += `<tr><td><span class="token-preview token-preview--spacing" style="width:${Math.min(px, 200)}px"></span></td><td class="token-name">${name}</td><td class="token-value">${value}</td></tr>`;
-  });
-  html += '</tbody></table></div>';
-  document.getElementById('spacing-padding-container').innerHTML = html;
-
-  // Brand margin
-  const margin = Object.entries(tokens)
-    .filter(([name]) => name.startsWith('--m-'))
-    .sort((a, b) => parseInt(a[1]) - parseInt(b[1]));
-
-  html = '<div class="card"><table class="token-table"><thead><tr><th>Preview</th><th>Token</th><th>Value</th></tr></thead><tbody>';
-  margin.forEach(([name, value]) => {
-    const px = parseInt(value) || 0;
-    html += `<tr><td><span class="token-preview token-preview--spacing" style="width:${Math.min(px, 200)}px"></span></td><td class="token-name">${name}</td><td class="token-value">${value}</td></tr>`;
-  });
-  html += '</tbody></table></div>';
-  document.getElementById('spacing-margin-container').innerHTML = html;
-}
-
-// ── Build Dimensions ──────────────────────────
-function buildDimensions() {
-  const tokens = getTokens();
-
-  // Font sizes
-  const fonts = Object.entries(tokens).filter(([n]) => n.startsWith('--text-'));
-  let html = '<div class="card"><table class="token-table"><thead><tr><th>Preview</th><th>Token</th><th>Value</th></tr></thead><tbody>';
-  fonts.forEach(([name, value]) => {
-    html += `<tr><td><span class="token-preview token-preview--text" style="font-size:${value}; line-height:1.2">Aa</span></td><td class="token-name">${name}</td><td class="token-value">${value}</td></tr>`;
-  });
-  html += '</tbody></table></div>';
-  document.getElementById('dim-font-container').innerHTML = html;
-
-  // Line heights
-  const leadings = Object.entries(tokens).filter(([n]) => n.startsWith('--leading-'));
-  html = '<div class="card"><table class="token-table"><thead><tr><th>Preview</th><th>Token</th><th>Value</th></tr></thead><tbody>';
-  leadings.forEach(([name, value]) => {
-    const px = parseInt(value) || 0;
-    html += `<tr><td><span class="token-preview token-preview--spacing" style="width:${Math.min(px * 2, 120)}px"></span></td><td class="token-name">${name}</td><td class="token-value">${value}</td></tr>`;
-  });
-  html += '</tbody></table></div>';
-  document.getElementById('dim-leading-container').innerHTML = html;
-
-  // Radius
-  const radii = Object.entries(tokens).filter(([n]) => n.startsWith('--rounded-'));
-  html = '<div class="card"><table class="token-table"><thead><tr><th>Preview</th><th>Token</th><th>Value</th></tr></thead><tbody>';
-  radii.forEach(([name, value]) => {
-    html += `<tr><td><span class="token-preview token-preview--radius" style="border-radius:${value}"></span></td><td class="token-name">${name}</td><td class="token-value">${value}</td></tr>`;
-  });
-  html += '</tbody></table></div>';
-  document.getElementById('dim-radius-container').innerHTML = html;
-}
-
-// ── Build Typography ──────────────────────────
-function buildTypography() {
-  const tokens = getTokens();
-
-  const headings = Object.entries(tokens).filter(([n]) => n.startsWith('--heading-'));
-  const bodies = Object.entries(tokens).filter(([n]) => n.startsWith('--body-'));
-
-  let html = '';
-  headings.forEach(([name, value]) => {
-    const label = name.replace('--', '');
-    html += `<div style="margin-bottom:20px; border-bottom:1px solid var(--color-border-neutral); padding-bottom:16px">
-      <div style="font:${value}; margin-bottom:8px">The quick brown fox jumps over the lazy dog</div>
-      <div style="display:flex; gap:16px; align-items:center">
-        <span class="token-name">${name}</span>
-        <span class="token-value">${value}</span>
-      </div>
-    </div>`;
-  });
-  document.getElementById('typo-headings').innerHTML = html;
-
-  html = '';
-  bodies.forEach(([name, value]) => {
-    html += `<div style="margin-bottom:20px; border-bottom:1px solid var(--color-border-neutral); padding-bottom:16px">
-      <div style="font:${value}; margin-bottom:8px">The quick brown fox jumps over the lazy dog</div>
-      <div style="display:flex; gap:16px; align-items:center">
-        <span class="token-name">${name}</span>
-        <span class="token-value">${value}</span>
-      </div>
-    </div>`;
-  });
-  document.getElementById('typo-body').innerHTML = html;
-}
-
-// ── Init ──────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  buildGlobalColors();
-  buildBrandColors();
-  buildSpacing();
-  buildDimensions();
-  buildTypography();
-});
-</script>
 
 </body>
 </html>
